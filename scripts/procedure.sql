@@ -1,6 +1,8 @@
 USE project;
 
 DELIMITER //
+DROP PROCEDURE IF EXISTS first//
+
 CREATE PROCEDURE first ()
 BEGIN
    SELECT * FROM Player WHERE idTeam = 1;
