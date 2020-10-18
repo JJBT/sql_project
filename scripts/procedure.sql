@@ -1,0 +1,7 @@
+DELIMITER //
+CREATE PROCEDURE first ()
+BEGIN
+   SELECT * FROM Player WHERE idTeam = 1;
+END //
+
+DELIMITER ;
