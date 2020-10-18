@@ -1,3 +1,5 @@
+USE project;
+
 DELIMITER //
 CREATE PROCEDURE first ()
 BEGIN
