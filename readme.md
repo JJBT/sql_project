@@ -13,7 +13,9 @@ poetry install
 
 ```sh
 touch .env
-echo "export FLASK_ENV=development" > .env
+echo "export FLASK_ENV=development" >> .env
+echo "export DATABASE_USER=your_username" >> .env
+echo "export DATABASE_PASSWORD=your_password" >> .env
 poetry shell
 flask run
 ```
