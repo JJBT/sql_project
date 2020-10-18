@@ -114,6 +114,7 @@ celerybeat-schedule.db
 # IDE
 /.vscode
 /.idea
+.idea
 
 # local
 /media

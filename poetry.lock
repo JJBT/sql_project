@@ -57,6 +57,25 @@ version = "1.1.1"
 
 [[package]]
 category = "main"
+description = "Virtual package for MySQL-python"
+name = "mysql"
+optional = false
+python-versions = "*"
+version = "0.0.2"
+
+[package.dependencies]
+MySQL-python = "*"
+
+[[package]]
+category = "main"
+description = "Python interface to MySQL"
+name = "mysql-python"
+optional = false
+python-versions = "*"
+version = "1.2.5"
+
+[[package]]
+category = "main"
 description = "Pure Python MySQL Driver"
 name = "pymysql"
 optional = false
@@ -80,7 +99,7 @@ dev = ["pytest", "pytest-timeout", "coverage", "tox", "sphinx", "pallets-sphinx-
 watchdog = ["watchdog"]
 
 [metadata]
-content-hash = "a5d24f2210741cf19ac99f12f39b1a0b1d5e98d382d5d153d00f9934d48caed3"
+content-hash = "d30177838337e92de9e36b948f12318bb451a78c3dabbd83a5e7c6a95e15d410"
 lock-version = "1.0"
 python-versions = "^3.7"
 
@@ -135,6 +154,13 @@ markupsafe = [
     {file = "MarkupSafe-1.1.1-cp38-cp38-win32.whl", hash = "sha256:596510de112c685489095da617b5bcbbac7dd6384aeebeda4df6025d0256a81b"},
     {file = "MarkupSafe-1.1.1-cp38-cp38-win_amd64.whl", hash = "sha256:e8313f01ba26fbbe36c7be1966a7b7424942f670f38e666995b88d012765b9be"},
     {file = "MarkupSafe-1.1.1.tar.gz", hash = "sha256:29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b"},
+]
+mysql = [
+    {file = "mysql-0.0.2.tar.gz", hash = "sha256:55e66b5e7b3823b1da5fb2a063e95a628fb850b2a0b76bdcd884faac5d2daa7d"},
+]
+mysql-python = [
+    {file = "MySQL-python-1.2.5.win32-py2.7.exe", hash = "sha256:ab22d1322099098730a57fd59d610f60738f95a1cb68dacca2d1c47cb0cbe8ee"},
+    {file = "MySQL-python-1.2.5.zip", hash = "sha256:811040b647e5d5686f84db415efd697e6250008b112b6909ba77ac059e140c74"},
 ]
 pymysql = [
     {file = "PyMySQL-0.10.1-py2.py3-none-any.whl", hash = "sha256:44f47128dda8676e021c8d2dbb49a82be9e4ab158b9f03e897152a3a287c69ea"},

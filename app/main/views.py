@@ -4,4 +4,7 @@ from app.main import bp
 
 @bp.route("/", methods=['GET'])
 def index():
-    return jsonify({"message": "ok"})
+    """
+    Main page. With buttons and tables. Different procedures
+    """
+    return jsonify({"message": "ok!"})

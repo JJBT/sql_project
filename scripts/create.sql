@@ -1,4 +1,4 @@
-CREATE DATABASE project;
+CREATE DATABASE IF NOT EXISTS project;
 use project;
 
 CREATE TABLE if not exists Team (
