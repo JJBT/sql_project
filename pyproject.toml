@@ -8,6 +8,8 @@ authors = ["MickiMouse <495lolkek42@gmail.com>"]
 python = "^3.7"
 flask = "^1.1.2"
 pymysql = "^0.10.1"
+wtforms = "^2.3.3"
+black = "^20.8b1"
 
 [tool.poetry.dev-dependencies]
 
