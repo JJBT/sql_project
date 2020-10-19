@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS project;
-use project;
+USE project;
 
 CREATE TABLE if not exists Team (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

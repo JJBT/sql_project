@@ -23,8 +23,8 @@ def get_all_tables():
     conn = current_app.config.get("CONNECTION")
 
     with conn.cursor() as cursor:
-        query = "show tables;"
+        query = f"SHOW TABLES;"
         cursor.execute(query)
         result = cursor.fetchall()
-        tables = [(i.get("Tables_in_project", "Unknow"), i.get("Tables_in_project", "Unknow")) for i in result]
+        tables = [(i.get("Tables_in_project", "Unknown"), i.get("Tables_in_project", "Unknown")) for i in result]
     return tables

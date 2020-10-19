@@ -1,6 +1,7 @@
 USE project;
 
 DELIMITER //
+
 DROP PROCEDURE IF EXISTS first//
 
 CREATE PROCEDURE first ()
