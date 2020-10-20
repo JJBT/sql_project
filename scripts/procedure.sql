@@ -21,9 +21,10 @@ END //
 -- Изменить строку из заданной таблицы
 DROP PROCEDURE IF EXISTS updation //
 
-CREATE PROCEDURE updation (IN table_name NCHAR(20), IN del_id INT)
+CREATE PROCEDURE updation (IN p_table_name NCHAR(20), IN up_id INT, IN vals NCHAR(1000))
 BEGIN
-    DELETE FROM table_name WHERE id = del_id;
+    CREATE VIEW cols AS SELECT column_name FROM information_schema.columns WHERE table_name = p_table_name;
+    DECLARE
 END //
 
 DELIMITER ;

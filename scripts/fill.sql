@@ -5,7 +5,7 @@ INSERT INTO Team (division, plays, points) VALUES
 (2, 8, 7),
 (3, 4, 6);
 
-INSERT INTO Сontract (salary, duration) VALUES
+INSERT INTO Contract (salary, duration) VALUES
 (15200, "2020-12-25"),
 (19000, "2021-03-20"),
 (14000, "2021-05-15"),
@@ -33,7 +33,7 @@ INSERT INTO Сontract (salary, duration) VALUES
 (15000, "2021-11-15"),
 (15000, "2021-12-30");
 
-INSERT INTO Coach (name, age, xp, type, idTeam) VALUES
+INSERT INTO Coach (name, age, xp, type, idTeam, idContract) VALUES
 ('Wenger', 45, 7, 'manager', 1, 19),
 ('Arteta', 40, 3, 'regular', 1, 20),
 ('Emery', 35, 5, 'goalkeeper', 1, 21),
@@ -55,13 +55,13 @@ INSERT INTO Player (name, age, transfer_cost, position, idTeam, idContract) VALU
 ('Mertesacker', 34, 2, 'back', 3, 9),
 ('Wilshere', 28, 40, 'midfielder', 3, 10),
 ('Rosicky', 27, 18, 'midfielder', 3, 11),
-('Pepe', 21, 80, 'forward', 3, 12);
+('Pepe', 21, 80, 'forward', 3, 12),
 ('Martinez', 24, 20, 'goalkeeper', 2, 13),
 ('Gibbs', 23, 12, 'back', 2, 14),
 ('Kolasinac', 29, 14, 'back', 2, 15),
 ('Chamakh', 31, 28, 'midfielder', 2, 16),
 ('Cazorla', 29, 20, 'midfielder', 2, 17),
-('Lacazett', 25, 45, 'forward', 2, 18),
+('Lacazett', 25, 45, 'forward', 2, 18);
 
 
 INSERT INTO Doctor (name, age, spec) VALUES
