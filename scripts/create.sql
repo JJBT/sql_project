@@ -8,6 +8,12 @@ CREATE TABLE if not exists Team (
     points INT
 );
 
+CREATE TABLE if not EXISTS Contract (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    salary INT,
+    duration DATE
+);
+
 CREATE TABLE if not exists Coach (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name NCHAR(45),
@@ -15,7 +21,9 @@ CREATE TABLE if not exists Coach (
     xp INT,
     type ENUM('regular', 'manager', 'goalkeeper', 'fitness'),
     idTeam INT,
-    constraint fk_team_coach FOREIGN KEY(idTeam) references Team(id)
+    idContract INT NOT NULL,
+    constraint fk_team_coach FOREIGN KEY(idTeam) references Team(id),
+    constraint fk_contract_coach FOREIGN KEY(idContract) references Contract(id)
 );
 
 CREATE TABLE if not exists Player (
@@ -25,7 +33,10 @@ CREATE TABLE if not exists Player (
     transfer_cost INT,
     position ENUM('goalkeeper', 'back', 'midfielder', 'forward'),
     idTeam INT,
-    constraint fk_team_player FOREIGN KEY(idTeam) references Team(id)
+    idContract INT NOT NULL,
+    constraint fk_team_player FOREIGN KEY(idTeam) references Team(id),
+    constraint fk_contract_player FOREIGN KEY(idContract) references Contract(id)
+
 );
 
 CREATE TABLE if not exists Doctor (
