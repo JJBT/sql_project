@@ -7,12 +7,7 @@ def index():
     """
     Main page. With buttons and tables. Different procedures
     """
-    form = forms.ChoiceTableForm()
-
     if request.method == "POST":
-        form = forms.ChoiceTableForm(request.form)
-        data = None
-        if form.validate():
-            data = services.show_table(form.table.data)
-        return render_template("basic.html", form=form, data=data)
-    return render_template("basic.html", form=form)
+        data = services.show_table(request.get_json()['table'])
+        return jsonify(data)
+    return jsonify(services.get_all_tables())

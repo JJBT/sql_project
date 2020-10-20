@@ -2,7 +2,7 @@
 
 DB="project"
 
-sudo mysql -e "DROP DATABASE project;"
+sudo mysql -e "DROP DATABASE IF EXISTS project;"
 echo "Dropped previously db. Successful."
 
 sudo mysql -e "CREATE USER IF NOT EXISTS '$DATABASE_USER'@'localhost' IDENTIFIED BY '$DATABASE_PASSWORD';"

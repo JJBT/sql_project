@@ -26,5 +26,9 @@ def get_all_tables():
         query = f"SHOW TABLES;"
         cursor.execute(query)
         result = cursor.fetchall()
-        tables = [(i.get("Tables_in_project", "Unknown"), i.get("Tables_in_project", "Unknown")) for i in result]
+        tables = [
+            table
+            for obj in result
+            for table in obj.values()
+        ]
     return tables
