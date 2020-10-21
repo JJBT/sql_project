@@ -1,0 +1,28 @@
+[2020-10-21 21:11:00 +0300] [80402] [INFO] Starting gunicorn 20.0.4
+[2020-10-21 21:11:00 +0300] [80402] [INFO] Listening at: http://0.0.0.0:5000 (80402)
+[2020-10-21 21:11:00 +0300] [80402] [INFO] Using worker: sync
+[2020-10-21 21:11:00 +0300] [80404] [INFO] Booting worker with pid: 80404
+[2020-10-21 21:11:00 +0300] [80404] [INFO] Worker exiting (pid: 80404)
+[2020-10-21 21:11:00 +0300] [80402] [INFO] Shutting down: Master
+[2020-10-21 21:11:00 +0300] [80402] [INFO] Reason: App failed to load.
+[2020-10-21 21:15:45 +0300] [80805] [INFO] Starting gunicorn 20.0.4
+[2020-10-21 21:15:45 +0300] [80805] [INFO] Listening at: http://0.0.0.0:5000 (80805)
+[2020-10-21 21:15:45 +0300] [80805] [INFO] Using worker: sync
+[2020-10-21 21:15:45 +0300] [80807] [INFO] Booting worker with pid: 80807
+[2020-10-21 21:15:45 +0300] [80807] [INFO] Worker exiting (pid: 80807)
+[2020-10-21 21:15:45 +0300] [80805] [INFO] Shutting down: Master
+[2020-10-21 21:15:45 +0300] [80805] [INFO] Reason: App failed to load.
+[2020-10-21 21:16:32 +0300] [80987] [INFO] Starting gunicorn 20.0.4
+[2020-10-21 21:16:32 +0300] [80987] [INFO] Listening at: http://0.0.0.0:5000 (80987)
+[2020-10-21 21:16:32 +0300] [80987] [INFO] Using worker: sync
+[2020-10-21 21:16:32 +0300] [80989] [INFO] Booting worker with pid: 80989
+[2020-10-21 21:16:32 +0300] [80989] [INFO] Worker exiting (pid: 80989)
+[2020-10-21 21:16:32 +0300] [80987] [INFO] Shutting down: Master
+[2020-10-21 21:16:32 +0300] [80987] [INFO] Reason: App failed to load.
+[2020-10-21 21:24:55 +0300] [81875] [INFO] Starting gunicorn 20.0.4
+[2020-10-21 21:24:55 +0300] [81875] [INFO] Listening at: http://0.0.0.0:5000 (81875)
+[2020-10-21 21:24:55 +0300] [81875] [INFO] Using worker: sync
+[2020-10-21 21:24:55 +0300] [81877] [INFO] Booting worker with pid: 81877
+[2020-10-21 21:26:06 +0300] [81875] [INFO] Handling signal: int
+[2020-10-21 21:26:06 +0300] [81877] [INFO] Worker exiting (pid: 81877)
+[2020-10-21 21:26:07 +0300] [81875] [INFO] Shutting down: Master
