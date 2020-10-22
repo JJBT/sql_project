@@ -47,6 +47,7 @@ CREATE TABLE if not exists Doctor (
 );
 
 CREATE TABLE if NOT EXISTS Disease (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     idPlayer INT NOT NULL,
     idDoctor INT NOT NULL,
     type NCHAR(45),

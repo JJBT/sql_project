@@ -14,8 +14,11 @@ echo "Create database 'project'. Successful."
 sudo mysql -e "source scripts/fill.sql;"
 echo "Fill database 'project'. Successful."
 
-sudo mysql -e "source scripts/procedure.sql;"
-echo "Create procedures for database 'project'. Successful."
+#sudo mysql -e "source scripts/procedure.sql;"
+#echo "Create procedures for database 'project'. Successful."
+
+sudo mysql -e "source scripts/triggers.sql;"
+echo "Create triggers for database 'project'. Successful."
 
 sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO '$DATABASE_USER'@'localhost';"
 echo "Grant all privileges. Successful."
