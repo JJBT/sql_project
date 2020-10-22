@@ -20,7 +20,9 @@ def get_tables():
 @bp.route("/show_table", methods=["POST"])
 @cross_origin()
 def show_table():
-    table_name = request.get_json()['table']
+    params = request.get_json()
+    print(params)
+    table_name = params['table']
     data = services.show_table(table_name)
     return jsonify(data)
 
@@ -28,7 +30,8 @@ def show_table():
 @bp.route("/get_columns", methods=["POST"])
 @cross_origin()
 def get_cols():
-    table_name = request.get_json()['table']
+    params = request.get_json()
+    table_name = params['table']
     data = services.get_columns(table_name)
     return jsonify(data)
 
