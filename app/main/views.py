@@ -10,6 +10,13 @@ def index():
     return jsonify(status)
 
 
+@bp.route("/refresh_db", methods=["GET"])
+@cross_origin()
+def refresh_db():
+    status = services.refresh_db()
+    return jsonify(status)
+
+
 @bp.route("/get_all_tables", methods=["GET"])
 @cross_origin()
 def get_tables():
@@ -21,7 +28,6 @@ def get_tables():
 @cross_origin()
 def show_table():
     params = request.get_json(force=True)
-    print(params)
     table_name = params['table']
     data = services.show_table(table_name)
     return jsonify(data)
@@ -64,3 +70,12 @@ def update_row():
     obj = params['values']
     status = services.update_row(table_name, obj)
     return jsonify(status)
+
+
+# ========= CUSTOM QUERY ===================
+
+@bp.route("/query1", methods=["GET"])
+@cross_origin
+def query1():
+    pass
+

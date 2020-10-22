@@ -1,6 +1,6 @@
-USE project;
-
 DELIMITER //
+
+USE project //
 
 DROP TRIGGER IF EXISTS after_player_delete //
 
@@ -17,5 +17,4 @@ FOR EACH ROW BEGIN
 END //
 
 DELIMITER ;
-
 

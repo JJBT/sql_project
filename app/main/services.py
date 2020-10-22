@@ -1,5 +1,44 @@
 from flask import current_app
-from subprocess import check_output
+
+
+def execute_scripts_from_file(filename, delimiter):
+    conn = current_app.config.get("CONNECTION")
+
+    fd = open(filename, 'r')
+    sql_file = fd.read()
+    fd.close()
+    sql_commands = sql_file.split(delimiter)
+
+    with conn.cursor() as cursor:
+        for command in sql_commands:
+            try:
+                if 'delimiter' in command.lower():
+                    continue
+                if command.strip() != '':
+                    cursor.execute(command)
+
+            except IOError as msg:
+                print("Command skipped: ", msg)
+
+
+def drop_database():
+    conn = current_app.config.get("CONNECTION")
+    with conn.cursor() as cursor:
+        cursor.execute(f"""DROP DATABASE IF EXISTS project""")
+
+
+def refresh_db():
+    drop_database()
+
+    files = [
+        ('scripts/create.sql', ';'),
+        ('scripts/fill.sql', ';'),
+        ('scripts/triggers.sql', '//')
+    ]
+    for file in files:
+        execute_scripts_from_file(file[0], file[1])
+
+    return {'status': 'ok'}
 
 
 def show_table(table_name):
