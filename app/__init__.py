@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from config import Config
 
 
@@ -12,5 +13,6 @@ def create_app(config=Config):
     from app.main import bp as main_bp
 
     app.register_blueprint(main_bp)
+    CORS(app)
 
     return app

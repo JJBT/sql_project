@@ -1,4 +1,5 @@
 from flask import current_app
+from subprocess import check_output
 
 
 def show_table(table_name):
@@ -75,13 +76,12 @@ def update_row(table_name, obj):
     conn = current_app.config.get("CONNECTION")
 
     with conn.cursor() as cursor:
-        columns = get_columns(table_name)
-        if 'id' in columns:
-            columns.remove('id')
+        iid = obj['id']
+        del obj['id']
 
-        data = [obj[column] for column in columns]
-        data = list(map(lambda x: "'" + str(x) + "'", data))
-        query = f"""UPDATE INTO {table_name} ( {','.join(columns)} ) VALUES ( {','.join(data)} ) ;"""
+        data = [key + " = " + "'" + str(obj[key]) + "'" for key in obj]
+
+        query = f"""UPDATE {table_name} SET {','.join(data)} WHERE id = {iid} ;"""
         cursor.execute(query)
         status = {'status': 'ok'}
     return status
