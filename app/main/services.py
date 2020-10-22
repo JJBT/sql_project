@@ -1,16 +1,11 @@
 from flask import current_app
 
 
-def show_table(
-    table_name: str,
-) -> dict:
-    """
-    Returns all rows in table
-    """
+def show_table(table_name):
     conn = current_app.config.get("CONNECTION")
 
     with conn.cursor() as cursor:
-        query = f"SELECT * FROM {table_name};"
+        query = f"""SELECT * FROM {table_name};"""
         cursor.execute(query)
         rows = cursor.fetchall()
 
@@ -35,13 +30,10 @@ def get_columns(table_name):
 
 
 def get_all_tables():
-    """
-    Returns all tables (names)
-    """
     conn = current_app.config.get("CONNECTION")
 
     with conn.cursor() as cursor:
-        query = f"SHOW TABLES;"
+        query = f"""SHOW TABLES;"""
         cursor.execute(query)
         result = cursor.fetchall()
         tables = [
@@ -50,3 +42,48 @@ def get_all_tables():
             for table in obj.values()
         ]
     return tables
+
+
+def delete_rows(table_name, ids):
+    conn = current_app.config.get("CONNECTION")
+
+    with conn.cursor() as cursor:
+        ids = list(map(str, ids))
+        query = f"""DELETE FROM {table_name} where id in ( {','.join(ids)} );"""
+        cursor.execute(query)
+        status = {'status': 'ok'}
+    return status
+
+
+def insert_row(table_name, obj):
+    conn = current_app.config.get("CONNECTION")
+
+    with conn.cursor() as cursor:
+        columns = get_columns(table_name)
+        if 'id' in columns:
+            columns.remove('id')
+
+        data = [obj[column] for column in columns]
+        data = list(map(lambda x: "'" + str(x) + "'", data))
+        query = f"""INSERT INTO {table_name} ( {','.join(columns)} ) VALUES ( {','.join(data)} ) ;"""
+        cursor.execute(query)
+        status = {'status': 'ok'}
+    return status
+
+
+def update_row(table_name, obj):
+    conn = current_app.config.get("CONNECTION")
+
+    with conn.cursor() as cursor:
+        columns = get_columns(table_name)
+        if 'id' in columns:
+            columns.remove('id')
+
+        data = [obj[column] for column in columns]
+        data = list(map(lambda x: "'" + str(x) + "'", data))
+        query = f"""UPDATE INTO {table_name} ( {','.join(columns)} ) VALUES ( {','.join(data)} ) ;"""
+        cursor.execute(query)
+        status = {'status': 'ok'}
+    return status
+
+
