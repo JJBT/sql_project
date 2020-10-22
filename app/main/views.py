@@ -4,21 +4,21 @@ from app.main import bp, services
 
 
 @bp.route("/", methods=["GET", "POST"])
-@cross_origin
+@cross_origin()
 def index():
     status = {"status": "Hello, World"}
     return jsonify(status)
 
 
 @bp.route("/get_all_tables", methods=["GET"])
-@cross_origin
+@cross_origin()
 def get_tables():
     data = services.get_all_tables()
     return jsonify(data)
 
 
 @bp.route("/show_table", methods=["POST"])
-@cross_origin
+@cross_origin()
 def show_table():
     table_name = request.get_json()['table']
     data = services.show_table(table_name)
@@ -26,7 +26,7 @@ def show_table():
 
 
 @bp.route("/get_columns", methods=["POST"])
-@cross_origin
+@cross_origin()
 def get_cols():
     table_name = request.get_json()['table']
     data = services.get_columns(table_name)
@@ -34,7 +34,7 @@ def get_cols():
 
 
 @bp.route("/delete_rows", methods=["POST"])
-@cross_origin
+@cross_origin()
 def delete_rows():
     params = request.get_json()
     table_name = params['table']
@@ -44,7 +44,7 @@ def delete_rows():
 
 
 @bp.route("/insert_row", methods=["POST"])
-@cross_origin
+@cross_origin()
 def insert_row():
     params = request.get_json()
     table_name = params['table']
@@ -54,7 +54,7 @@ def insert_row():
 
 
 @bp.route("/update_row", methods=["POST"])
-@cross_origin
+@cross_origin()
 def update_row():
     params = request.get_json()
     table_name = params['table']
