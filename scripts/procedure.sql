@@ -1,4 +1,5 @@
 DELIMITER //
+
 USE project //
 
 -- Проверить целостность TeamInventory

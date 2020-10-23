@@ -10,6 +10,7 @@ def execute_scripts_from_file(filename, delimiter):
     fd.close()
     sql_commands = sql_file.split(delimiter)
 
+    conn.ping()
     with conn.cursor() as cursor:
         for command in sql_commands:
             try:
@@ -24,6 +25,7 @@ def execute_scripts_from_file(filename, delimiter):
 
 def drop_database():
     conn = current_app.config.get("CONNECTION")
+    conn.ping()
     with conn.cursor() as cursor:
         cursor.execute(f"""DROP DATABASE IF EXISTS project""")
 
@@ -46,6 +48,7 @@ def refresh_db():
 def show_table(table_name):
     conn = current_app.config.get("CONNECTION")
 
+    conn.ping()
     with conn.cursor() as cursor:
         query = f"""SELECT * FROM {table_name};"""
         cursor.execute(query)
@@ -75,6 +78,7 @@ def get_columns(table_name):
 def get_all_tables():
     conn = current_app.config.get("CONNECTION")
 
+    conn.ping()
     with conn.cursor() as cursor:
         query = f"""SHOW TABLES;"""
         cursor.execute(query)
@@ -90,6 +94,7 @@ def get_all_tables():
 def delete_rows(table_name, ids):
     conn = current_app.config.get("CONNECTION")
 
+    conn.ping()
     with conn.cursor() as cursor:
         ids = list(map(str, ids))
         query = f"""DELETE FROM {table_name} where id in ( {','.join(ids)} );"""
@@ -101,6 +106,7 @@ def delete_rows(table_name, ids):
 def insert_row(table_name, obj):
     conn = current_app.config.get("CONNECTION")
 
+    conn.ping()
     with conn.cursor() as cursor:
         columns = get_columns(table_name)
         if 'id' in columns:
@@ -120,6 +126,7 @@ def insert_row(table_name, obj):
 def update_row(table_name, obj):
     conn = current_app.config.get("CONNECTION")
 
+    conn.ping()
     with conn.cursor() as cursor:
         iid = obj['id']
         del obj['id']
@@ -138,6 +145,7 @@ def search(table_name, column, search_request):
     conn = current_app.config.get("CONNECTION")
     columns = get_columns(table_name)
 
+    conn.ping()
     with conn.cursor() as cursor:
         query = f"""SELECT * FROM {table_name} WHERE {column} LIKE "{search_query}" """
         cursor.execute(query)
@@ -166,6 +174,7 @@ def get_all_query():
 
 def custom_query(proc_name, params=None):
     conn = current_app.config.get("CONNECTION")
+    conn.ping()
     with conn.cursor() as cursor:
         if params is None:
             cursor.callproc(proc_name)
