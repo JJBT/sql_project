@@ -12,14 +12,8 @@ BEGIN
         end if;
 END //
 
--- Рецедив травмы
-create procedure test2 ()
-BEGIN
-
-END //
-
 -- Частота травм
-create procedure test3 ()
+create procedure test2 ()
 BEGIN
     create view test_view as select idPlayer, count(*) as disease_count from Disease group by idPlayer order by disease_count DESC;
     select * from Player inner join test_view on Player.id = test_view.idPlayer order by disease_count desc;
@@ -27,52 +21,43 @@ BEGIN
     drop view if exists test_view;
 END //
 
--- Какого игрока какой врач лечил чаще всего
-create procedure test4 ()
-BEGIN
 
-END //
 
 -- Какая команда самая успевающая
-create procedure test5 ()
+create procedure test3 ()
 BEGIN
-
+    select id, (points / plays) as points_per_play from Team order by points_per_play desc;
 END //
 
 -- Все кого лечил травматолог
-create procedure test6 ()
+create procedure test4 ()
 BEGIN
-
+    select * from Player inner join Disease on Player.id = Disease.idPlayer inner join Doctor on Disease.idDoctor = Doctor.id where Doctor.spec like 'traumatologist';
 END //
 
 -- Отсортированная таблица молодых игроков (transfer cost)
-create procedure test7 ()
+create procedure test5 ()
 BEGIN
-
+    select * from Player where age < 24 order by transfer_cost desc;
 END //
 
 -- Самый возрастной игрок
-create procedure test8 ()
+create procedure test6 ()
 BEGIN
     select * from Player where age = (select max(age) from Player );
 END //
 
 -- Средний возраст по командам
-create procedure test9 ()
+create procedure test7 ()
 BEGIN
     select idTeam, avg(age) as 'average age' from Player group by idTeam;
 END //
 
 -- Топ самых долгих травм
-create procedure test10 ()
+create procedure test8 ()
 BEGIN
     select id, idPlayer, idDoctor, settlement, discharge, DATEDIFF(coalesce(discharge, curdate()), settlement) as days from Disease order by days desc;
 END //
 
--- Кто из врачей самый востребованный
-create procedure test11 ()
-BEGIN
-
-END //
 
 DELIMITER ;
