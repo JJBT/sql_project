@@ -151,7 +151,8 @@ def search(table_name, column, search_request):
     return result
 
 
-def get_text_query()
+def get_text_query():
+    pass
 
 
 def custom_query(proc_name, params=None):
