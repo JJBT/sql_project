@@ -72,6 +72,17 @@ def update_row():
     return jsonify(status)
 
 
+@bp.route("/search", methods=["POST"])
+@cross_origin()
+def search():
+    params = request.get_json(force=True)
+    table_name = params['table']
+    column = params['column']
+    search_request = params['request']
+    data = services.search(table_name, column, search_request)
+    return jsonify(data)
+
+
 # ========= CUSTOM QUERY ===================
 
 @bp.route("/query1", methods=["GET"])

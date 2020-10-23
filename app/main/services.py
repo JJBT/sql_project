@@ -60,11 +60,12 @@ def show_table(table_name):
 def get_columns(table_name):
     columns = {
         'Team': ['id', 'division', 'plays', 'points'],
-        'Contract': ['id', 'salary', 'duration'],
-        'Coach': ['id', 'name', 'age', 'xp', 'type', 'idTeam', 'idContract'],
-        'Player': ['id', 'name', 'age', 'transfer_cost', 'position', 'idTeam', 'idContract'],
+        'Coach': ['id', 'name', 'age', 'xp', 'type', 'idTeam'],
+        'Player': ['id', 'name', 'age', 'transfer_cost', 'position', 'idTeam'],
+        'Inventory': ['id', 'name'],
         'Doctor': ['id', 'name', 'age', 'spec'],
-        'Disease': ['id', 'idPlayer', 'idDoctor', 'type', 'settlement', 'discharge']
+        'Disease': ['id', 'idPlayer', 'idDoctor', 'type', 'settlement', 'discharge'],
+        'Team_Inventory': ['id', 'idTeam', 'idInventory', 'start_time', 'end_time']
     }
     return columns[table_name]
 
@@ -124,5 +125,24 @@ def update_row(table_name, obj):
         cursor.execute(query)
         status = {'status': 'ok'}
     return status
+
+
+def search(table_name, column, search_request):
+    search_query = '%' + str(search_request) + '%'
+
+    conn = current_app.config.get("CONNECTION")
+    columns = get_columns(table_name)
+
+    with conn.cursor() as cursor:
+        query = f"""SELECT * FROM {table_name} WHERE {column} LIKE "{search_query}" """
+        cursor.execute(query)
+        data = cursor.fetchall()
+
+    result = {
+        'columns': columns,
+        'rows': data
+    }
+
+    return result
 
 

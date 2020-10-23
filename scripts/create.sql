@@ -8,10 +8,9 @@ CREATE TABLE if not exists Team (
     points INT
 );
 
-CREATE TABLE if not EXISTS Contract (
+CREATE TABLE if not exists Inventory (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    salary INT,
-    duration DATE
+    name NCHAR(45)
 );
 
 CREATE TABLE if not exists Coach (
@@ -21,9 +20,7 @@ CREATE TABLE if not exists Coach (
     xp INT,
     type ENUM('regular', 'manager', 'goalkeeper', 'fitness'),
     idTeam INT,
-    idContract INT NOT NULL,
-    constraint fk_team_coach FOREIGN KEY(idTeam) references Team(id),
-    constraint fk_contract_coach FOREIGN KEY(idContract) references Contract(id)
+    constraint fk_team_coach FOREIGN KEY(idTeam) references Team(id)
 );
 
 CREATE TABLE if not exists Player (
@@ -33,10 +30,7 @@ CREATE TABLE if not exists Player (
     transfer_cost INT,
     position ENUM('goalkeeper', 'back', 'midfielder', 'forward'),
     idTeam INT,
-    idContract INT NOT NULL,
-    constraint fk_team_player FOREIGN KEY(idTeam) references Team(id),
-    constraint fk_contract_player FOREIGN KEY(idContract) references Contract(id)
-
+    constraint fk_team_player FOREIGN KEY(idTeam) references Team(id)
 );
 
 CREATE TABLE if not exists Doctor (
@@ -46,7 +40,7 @@ CREATE TABLE if not exists Doctor (
     spec NCHAR(45)
 );
 
-CREATE TABLE if NOT EXISTS Disease (
+CREATE TABLE if not exists Disease (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     idPlayer INT NOT NULL,
     idDoctor INT NOT NULL,
@@ -55,4 +49,14 @@ CREATE TABLE if NOT EXISTS Disease (
     discharge DATE,
     constraint fk_player FOREIGN KEY(idPlayer) references Player(id),
     constraint fk_doctor FOREIGN KEY(idDoctor) references Doctor(id)
+);
+
+CREATE TABLE if not exists Team_Inventory (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    idTeam INT NOT NULL,
+    idInventory INT NOT NULL,
+    start_time DATE,
+    end_time DATE,
+    constraint fk_pl_inv_inv FOREIGN KEY(idInventory) references Inventory(id),
+    constraint fk_pl_inv_pl FOREIGN KEY(idTeam) references Team(id)
 );
