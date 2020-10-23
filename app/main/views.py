@@ -85,8 +85,12 @@ def search():
 
 # ========= CUSTOM QUERY ===================
 
-@bp.route("/query1", methods=["GET"])
-@cross_origin
-def query1():
-    pass
 
+@bp.route("/query", methods=["POST"])
+@cross_origin()
+def custom_query():
+    params = request.get_json(force=True)
+    proc_name = params['proc']
+    args = params.get('args', None)
+    data = services.custom_query(proc_name, args)
+    return jsonify(data)

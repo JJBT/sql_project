@@ -1,4 +1,5 @@
 from flask import current_app
+from pymysql.err import OperationalError
 
 
 def execute_scripts_from_file(filename, delimiter):
@@ -33,6 +34,7 @@ def refresh_db():
     files = [
         ('scripts/create.sql', ';'),
         ('scripts/fill.sql', ';'),
+        ('scripts/procedure.sql', '//'),
         ('scripts/triggers.sql', '//')
     ]
     for file in files:
@@ -104,11 +106,14 @@ def insert_row(table_name, obj):
         if 'id' in columns:
             columns.remove('id')
 
-        data = [obj[column] for column in columns]
-        data = list(map(lambda x: "'" + str(x) + "'", data))
+        data = [obj[column] if obj[column] is not None else 'NULL' for column in columns]
+        data = list(map(lambda x: "'" + str(x) + "'" if x != 'NULL' else str(x), data))
         query = f"""INSERT INTO {table_name} ( {','.join(columns)} ) VALUES ( {','.join(data)} ) ;"""
-        cursor.execute(query)
-        status = {'status': 'ok'}
+        try:
+            cursor.execute(query)
+            status = {'status': 'ok'}
+        except OperationalError:
+            status = {'status': 'fail'}
     return status
 
 
@@ -146,3 +151,25 @@ def search(table_name, column, search_request):
     return result
 
 
+def get_text_query()
+
+
+def custom_query(proc_name, params=None):
+    conn = current_app.config.get("CONNECTION")
+    with conn.cursor() as cursor:
+        if params is None:
+            cursor.callproc(proc_name)
+        else:
+            cursor.callproc(proc_name, args=params)
+        data = cursor.fetchall()
+
+    columns = list(data[0].keys())
+    if 'id' in columns:
+        columns.remove('id')
+        columns.insert(0, 'id')
+
+    result = {
+        'columns': columns,
+        'rows': data
+    }
+    return result
