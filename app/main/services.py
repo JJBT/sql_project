@@ -151,8 +151,21 @@ def search(table_name, column, search_request):
     return result
 
 
-def get_text_query():
-    pass
+def get_all_query():
+    result = [
+        {'proc_name': 'test1', 'text': 'Проверить целостность TeamInventory'},
+        {'proc_name': 'test2', 'text': 'Рецедив трамы'},
+        {'proc_name': 'test3', 'text': 'Частота травм'},
+        {'proc_name': 'test4', 'text': 'Какого игрока какой врач лечил чаще всего'},
+        {'proc_name': 'test5', 'text': 'Успеваемость команд'},
+        {'proc_name': 'test6', 'text': 'Все кого лечил травмотолог'},
+        {'proc_name': 'test7', 'text': 'Таблица молодых игроков по transfer cost'},
+        {'proc_name': 'test8', 'text': 'Самый возрастной игрок'},
+        {'proc_name': 'test9', 'text': 'Средний возраст по командам'},
+        {'proc_name': 'test10', 'text': 'Топ самых долгих травм'},
+        {'proc_name': 'test11', 'text': 'Проверить целостность TeamInventory'},
+    ]
+    return result
 
 
 def custom_query(proc_name, params=None):

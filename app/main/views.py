@@ -83,6 +83,12 @@ def search():
     return jsonify(data)
 
 
+@bp.route("/get_all_query", methods=["GET"])
+@cross_origin()
+def get_all_query():
+    data = services.get_all_query()
+    return jsonify(data)
+
 # ========= CUSTOM QUERY ===================
 
 
